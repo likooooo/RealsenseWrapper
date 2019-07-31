@@ -53,24 +53,27 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PointcloudWrapper">
+      <HintPath>G:\Code\VSproject\github\RealsenseWrapper\lib\PointcloudWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="RealsenseWrapper">
+      <HintPath>G:\Code\VSproject\github\RealsenseWrapper\lib\RealsenseWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="RealsenseWrapper.Form">
       <HintPath>..\lib\RealsenseWrapper.Form.dll</HintPath>
     </Reference>
-    <Reference Include="SharpGL, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharpglWrapper\lib\SharpGL.dll</HintPath>
+    <Reference Include="SharpGL">
+      <HintPath>G:\Code\VSproject\github\RealsenseWrapper\lib\SharpGL.dll</HintPath>
     </Reference>
-    <Reference Include="SharpGL.SceneGraph, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharpglWrapper\lib\SharpGL.SceneGraph.dll</HintPath>
+    <Reference Include="SharpGL.SceneGraph">
+      <HintPath>G:\Code\VSproject\github\RealsenseWrapper\lib\SharpGL.SceneGraph.dll</HintPath>
     </Reference>
-    <Reference Include="SharpGL.WinForms, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharpglWrapper\lib\SharpGL.WinForms.dll</HintPath>
+    <Reference Include="SharpGL.WinForms">
+      <HintPath>G:\Code\VSproject\github\RealsenseWrapper\lib\SharpGL.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="SharpglWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharpglWrapper\lib\SharpglWrapper.dll</HintPath>
+      <HintPath>G:\Code\VSproject\github\SharpglWrapper\lib\SharpglWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

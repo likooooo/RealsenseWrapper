@@ -33,6 +33,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
+            this.btnMesure = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -43,9 +44,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(51, 60);
+            this.pictureBox1.Location = new System.Drawing.Point(34, 482);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(400, 358);
+            this.pictureBox1.Size = new System.Drawing.Size(319, 246);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -65,7 +66,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox3.Location = new System.Drawing.Point(92, 436);
+            this.pictureBox3.Location = new System.Drawing.Point(373, 443);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(359, 304);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -85,7 +86,7 @@
             // openGLControl1
             // 
             this.openGLControl1.DrawFPS = false;
-            this.openGLControl1.Location = new System.Drawing.Point(476, 457);
+            this.openGLControl1.Location = new System.Drawing.Point(3, 0);
             this.openGLControl1.Name = "openGLControl1";
             this.openGLControl1.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl1.RenderContextType = SharpGL.RenderContextType.DIBSection;
@@ -93,19 +94,31 @@
             this.openGLControl1.Size = new System.Drawing.Size(266, 247);
             this.openGLControl1.TabIndex = 4;
             // 
+            // btnMesure
+            // 
+            this.btnMesure.Location = new System.Drawing.Point(629, 52);
+            this.btnMesure.Name = "btnMesure";
+            this.btnMesure.Size = new System.Drawing.Size(75, 23);
+            this.btnMesure.TabIndex = 5;
+            this.btnMesure.Text = "测量";
+            this.btnMesure.UseVisualStyleBackColor = true;
+            this.btnMesure.Click += new System.EventHandler(this.BtnMesure_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 768);
-            this.Controls.Add(this.openGLControl1);
-            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.btnMesure);
+            this.Controls.Add(this.openGLControl1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -121,6 +134,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnStart;
         private SharpGL.OpenGLControl openGLControl1;
+        private System.Windows.Forms.Button btnMesure;
     }
 }
 

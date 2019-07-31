@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SharpglWrapper;
-using System.Drawing;
+﻿using PointcloudWrapper;
 using SharpGL;
+using System;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 namespace RealsenseWrapper.Form
 {
     public delegate void DisplayImg(Bitmap bitmap);
+    public delegate void DisplayPointcloud(PointcloudF pointcloudF);
     public class RealsenseWidget
     {
         RealsenseControl rs;
         PictureBox picRgb, picDepth, picInfrared;
         OpenGLControl openGLControl;
         SharpglWrapper.SharpglWrapper sharpglControl;
+        public SharpglWrapper.SharpglWrapper SharpglControl
+        {
+            get
+            {
+                return sharpglControl;
+            }
+        }
         Thread displayThread;
         public int frameStep;
         private void InitCamera()
@@ -32,12 +36,15 @@ namespace RealsenseWrapper.Form
             }
             catch (Exception e)
             {
-                MessageBox.Show("未检测到可用相机，异常退出");
+                MessageBox.Show(e.HResult.ToString()+":未检测到可用相机，异常退出");
             }
         }
         private void InitOpengl()
         {
-            sharpglControl = new SharpglWrapper.SharpglWrapper(openGLControl);        
+            sharpglControl = new SharpglWrapper.SharpglWrapper(openGLControl);
+            sharpglControl.AddEventZoom();
+            sharpglControl.AddEventMove();
+            sharpglControl.SetModelSample(5);
         }
         void DisplayRgb(Bitmap bitmap)
         {
@@ -51,15 +58,16 @@ namespace RealsenseWrapper.Form
         {
             picDepth.Image = bitmap;
         }
-        void DisplayPointcloud(Bitmap bitmap)
+        void DisplayPointcloud(PointcloudF pointcloudF)
         {
-         
+            sharpglControl.SetDraw(pointcloudF);
         }
         private void LoopCapture()
         {
-            DisplayImg displayRgb=  new DisplayImg(DisplayRgb);
+            DisplayImg displayRgb = new DisplayImg(DisplayRgb);
             DisplayImg displayInfrared = new DisplayImg(DisplayInfrared);
             DisplayImg displayDepth = new DisplayImg(DisplayDepth);
+            DisplayPointcloud displayPointcloud = new DisplayPointcloud(DisplayPointcloud);
             while (true)
             {
                 if (rs.UpdateFrame())
@@ -85,27 +93,28 @@ namespace RealsenseWrapper.Form
                     }
                     if (null != openGLControl)
                     {
-                        sharpglControl.SetDraw(rs.GetPointclouds());
+                        displayPointcloud.Invoke(rs.GetPointclouds());
+
                     }
-                   //;
+                    //;
                     Thread.Sleep(frameStep);
                 }
 
             }
         }
         public RealsenseWidget(PictureBox picRgb, PictureBox picDepth,
-            PictureBox picInfrared,OpenGLControl openGLControl)
+            PictureBox picInfrared, OpenGLControl openGLControl)
         {
             this.picRgb = picRgb;
             this.picDepth = picDepth;
             this.picInfrared = picInfrared;
             this.openGLControl = openGLControl;
             InitCamera();
-           if(null!=openGLControl)
+            if (null != openGLControl)
                 InitOpengl();
             displayThread = new Thread
                 (new ThreadStart(LoopCapture));
-            frameStep = 100;
+            frameStep = 0;
         }
 
 
@@ -115,7 +124,7 @@ namespace RealsenseWrapper.Form
         /// </summary>
         /// <param name="frameStep">每一帧中间暂定多久</param>
         public void StartDisplay()
-        {     
+        {
             displayThread.Start();
         }
 
@@ -130,5 +139,19 @@ namespace RealsenseWrapper.Form
 
 
 
+
+
+        ///**
+        // * 一下内容可以不要
+        // * **/
+        //angle1 angle = new angle1();
+        //public double GetData(Bitmap bitmap)
+        //{
+        //    return angle.AnglePic(bitmap);
+        //}
+
+
     }
+
+
 }

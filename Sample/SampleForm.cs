@@ -24,7 +24,7 @@ namespace Sample
             }
             catch(Exception e)
             {
-                MessageBox.Show("未检测到可用相机，异常退出");
+                MessageBox.Show(e.HResult.ToString()+":未检测到可用相机，异常退出");
             }
         }
 
